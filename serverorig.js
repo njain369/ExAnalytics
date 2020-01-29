@@ -6,7 +6,7 @@ var connection = mysql.createConnection({
     host:'localhost',
     user:'root',
     password:'',
-    database:'exanalytics'
+    database:'nptel'
 })
 
 connection.connect(function(error){
@@ -34,7 +34,8 @@ app.post("/formlogin", function (req, res) {
         gender: req.body.gender,
         email: req.body.email,
         phone: req.body.phone,
-        year: req.body.year,
+		year:'2020',
+        Class: req.body.year,
         branch: req.body.branch,
         position: req.body.position,
         coursename: req.body.coursename
@@ -46,12 +47,12 @@ console.log(dbexcel.name);
 console.log(typeof(dbexcel.roll));
    // var sql = "INSERT INTO students VALUES ("+dbexcel.name+","+ dbexcel.lastname+","+dbexcel.birthday+","+dbexcel.roll+","+dbexcel.caste+","+dbexcel.gender+","+dbexcel.email+","+dbexcel.phone+","+dbexcel.year+","+dbexcel.branch+","+dbexcel.position+","+dbexcel.coursename+")";
 //var sql ="INSERT INTO students VALUES('aditya','Jain','23-04-2009','18','no','M','email@gmail.com','872392931','TE','IT','Student','Data Binding')";
-   var sql ="INSERT INTO students VALUES ?";
-   var records=[[dbexcel.name,dbexcel.lastname,dbexcel.birthday,dbexcel.roll,dbexcel.caste,dbexcel.gender,dbexcel.email,dbexcel.phone,dbexcel.year,dbexcel.branch,dbexcel.position,dbexcel.coursename]];
+   var sql ="INSERT INTO registration VALUES ?";
+   var records=[[dbexcel.name,dbexcel.lastname,dbexcel.birthday,dbexcel.roll,dbexcel.caste,dbexcel.gender,dbexcel.email,dbexcel.phone,dbexcel.year,dbexcel.branch,dbexcel.position,dbexcel.coursename,dbexcel.Class]];
      
    connection.query(sql,[records],function(error,rows,fields){
         if(!!error){
-            console.log('Error in the query'); 
+            console.log(error); 
            } else{
             console.log('success');
            }
@@ -65,7 +66,7 @@ app.get("/loginsuccess", function (req, res) {
     let conn;
     var data1;
     
-    connection.query("SELECT * FROM students", function (err, students, fields) {
+    connection.query("SELECT * FROM registration", function (err, students, fields) {
     
         const jsonStudents = JSON.parse(JSON.stringify(students));
         console.log(jsonStudents);

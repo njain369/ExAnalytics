@@ -92,14 +92,16 @@
 
 
             }
-            else if(e.target3.name =="last_name"){
+            // else if(e.target3.name =="last_name"){
                 
-            if (typeof fields["last_name"] !== "undefined") {
+            // if (typeof fields["last_name"] !== "undefined") {
                
-            }
+            // }
 
-            }else if(e.target.name == "email"){
+            //}
+            else if(e.target.name == "email"){
                 if (!fields["email"]) {
+                console.log(fields["email"]);
                 formIsValid = false;
                 errors["email"] = "*Please enter your email-ID.";
             }
@@ -148,7 +150,7 @@
                 alert("All clear")
                 var data1 = {
                     first_name: first_name,
-                    last_name: last_name,
+                    last_name: "",
                     birthday: birthday,
                     roll: roll,
                     caste: caste,
@@ -204,18 +206,18 @@
              alert("First Name Field is empty")
             }
 
-            if (!fields["last_name"]) {
-                formIsValid = false;
-                errors["last_name"] = "*Please enter your last name.";
-            }
-            if (typeof fields["last_name"] !== "undefined") {
-                if (!fields["last_name"].match(/^[a-zA-Z ]*$/)) {
-                    formIsValid = false;
-                    errors["last_name"] = "*Please enter alphabet characters only.";
-                } else {
-                    last_name = fields["last_name"];
-                }
-            }
+            // // if (!fields["last_name"]) {
+            // //     formIsValid = false;
+            // //     errors["last_name"] = "*Please enter your last name.";
+            // // }
+            // if (typeof fields["last_name"] !== "undefined") {
+            //     if (!fields["last_name"].match(/^[a-zA-Z ]*$/)) {
+            //         formIsValid = false;
+            //         errors["last_name"] = "*Please enter alphabet characters only.";
+            //     } else {
+            //         last_name = fields["last_name"];
+            //     }
+            //}
 
             if (!fields["email"]) {
                 formIsValid = false;
@@ -283,23 +285,12 @@
         render() {
             return <div>
                 <form name="RegForm" id="RegForm" method="POST" action="/formlogin"  >
-                    <div class="row row-space">
-                        <div class="col-2">
                             <div class="input-group">
-                                <Label text="firstname" />
-                                <input class="input--style-4" type="text" name="first_name" value={this.state.fields.first_name} onChange={this.handleChange} pattern="[A-z]{1,15}" required />
+                                <Label text="fullname" />
+                                <input class="input--style-4" type="text" name="first_name" value={this.state.fields.first_name} onChange={this.handleChange} required />
                                 <div className="errorMsg">{this.state.errors.first_name}</div>
                             </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="input-group">
-                                <Label text="lastname" />
-                                <input class="input--style-4" type="text" name="last_name" value={this.state.fields.last_name} onChange={this.handleChange} pattern="[A-z]{1,15}" required/>
-                                <div className="errorMsg">{this.state.errors.last_name}</div>
-                            </div>
-                        </div>
-                    </div>
-
+                     
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
@@ -364,7 +355,7 @@
                             <div class="input-group">
                                 <label class="label">Phone Number</label>
                                 <input class="input--style-4" type="tel"
-                                    name="phone"  pattern="(7|8|9)\d{9}" required/>
+                                    name="phone"  pattern="(6|7|8|9)\d{9}" required/>
                                 <div className="errorMsg">{this.state.errors.phone}</div>
                             </div>
                         </div>
@@ -376,6 +367,7 @@
                                 <div class="rs-select2 js-select-simple select--no-search">
                                     <select name="year" required>
                                         <option value="">Choose option</option>
+                                        <option value="FE">FE</option>
                                         <option value="SE">SE</option>
                                         <option value="TE">TE</option>
                                         <option value="BE">BE</option>
@@ -390,8 +382,8 @@
                                 <div class="rs-select2 js-select-simple select--no-search">
                                     <select name="branch" required>
                                         <option value="">Choose option</option>
-                                        <option alue="COMPS">COMPS</option>
-                                        <option value="IT">IT</option>
+                                        <option value="Computer">COMPS</option>
+                                        <option value="Information Technology">IT</option>
                                         <option value="EXTC">EXTC</option>
                                         <option value="ETRX">ETRX</option>
                                     </select>
@@ -414,7 +406,7 @@
                     </div>
                     <div class="input-group">
                         <label class="label">Course Name</label>
-                        <input class="input--style-4" type="text" name="coursename" pattern="[A-z]{1,15}" required />
+                        <input class="input--style-4" type="text" name="coursename"  required />
                         <div className="errorMsg">{this.state.errors.coursename}</div>
                     </div>
                     <div class="p-t-15">
